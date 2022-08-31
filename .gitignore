@@ -1,0 +1,6 @@
+config.py
+test/
+databases/
+last_num
+chromedriver.exe
+__pycache__/
