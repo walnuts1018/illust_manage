@@ -14,7 +14,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support import expected_conditions as EC
 
 with open('./databases/illust.csv', "r", newline="") as f:
@@ -91,8 +90,8 @@ def screen_init():
     image = Image.open("./databases/illust/"+illust_name)
     window.title(illust_name+"("+str(try_num)+"/"+str(len(illust_csv_lists))+")")
     print(illust_name)
-    w = image.width # 横幅を取得                                            
-    h = image.height # 縦幅を取得    
+    w = image.width                                           
+    h = image.height   
     tk_image = ImageTk.PhotoImage(image=image.resize(( int(w * (320/h)), int(h * (320/h)) )))
     canvas.create_image(500, 160, anchor=tkinter.CENTER, image=tk_image,tag="p1")
 
@@ -278,7 +277,6 @@ def selenium_run():
         options.add_argument("--user-data-dir=C:\\Users\\Juglans\\AppData\\Local\\Google\\Chrome\\User Data")
         driver = webdriver.Chrome("./src/chromedriver.exe",options=options)
         WebDriverWait(driver, 15).until(EC.presence_of_all_elements_located)
-        #driver.set_window_size(1920,1080)
         driver.maximize_window()
         driver.get("https://www.google.co.jp/imghp")
         time.sleep(0.23)
@@ -463,9 +461,6 @@ def key_event(e):
         click_close()
 
 window.bind("<KeyPress>", key_event)
-
-
-
 window.resizable(False, False)
 window.protocol("WM_DELETE_WINDOW", click_close)
 window.mainloop()
